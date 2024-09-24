@@ -9,7 +9,7 @@ function App() {
     <Switch>
     <Route path='/' exact><Users/></Route>
     <Route path='/places/new' exact><NewPlace></NewPlace></Route>
-    <Redirect path='/'></Redirect>
+    <Redirect to='/'></Redirect>
     </Switch>
   </Router>
   )
