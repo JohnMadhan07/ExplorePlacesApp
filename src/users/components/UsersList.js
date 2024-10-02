@@ -1,5 +1,6 @@
 import React from "react";
 import UsersItem from "./UsersItem";
+import { Container } from "@mui/material";
 
 const UsersList = (props) => {
     console.log(props)
@@ -7,6 +8,7 @@ const UsersList = (props) => {
     return <h2>No Users found.</h2>;
   }
   return (
+    <Container maxWidth="xs">
     <ul>
       {props.items.map((user) => (
         <UsersItem key={user.id}
@@ -16,6 +18,7 @@ const UsersList = (props) => {
         placeCount={user.placeCount}/>
       ))}
     </ul>
+    </Container>
   );
 };
 export default UsersList;
