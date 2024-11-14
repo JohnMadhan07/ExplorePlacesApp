@@ -1,43 +1,45 @@
 import React from "react";
-import { Box } from "@mui/material";
-import { Container } from "@mui/material";
-// import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Box, Container } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const Card = ({ children }) => {
+const Card = ({ children, to }) => {
   return (
     <Container
       fixed
       sx={{
         display: "flex",
-        justifyContent: "center", // Centers the card horizontally
-        minHeight: "100vh", // Optional: makes the card center vertically within the viewport
+        justifyContent: "center",
       }}
     >
-      <Box
-        sx={{
-          width: "320px",
-          height: "80px",
-          display: "flex",
-          flexDirection: "row", // Horizontal layout
-          alignItems: "center",
-          gap: 3,
-          mt: 2,
-          padding: 2,
-          borderRadius: 3,
-          boxShadow: 3, 
-          backgroundColor: "white",
-          textDecoration: "none",
-          color: "black",
-          "&:hover": {
-            boxShadow: 6,
-            color: "primary",
-          },
-        }}
-      >
-        {children}
-      </Box>
+      {to ? (
+        <Link to={to} style={{ textDecoration: "none" }}>
+          <Box sx={cardStyle}>{children}</Box>
+        </Link>
+      ) : (
+        <Box sx={cardStyle}>{children}</Box>
+      )}
     </Container>
   );
+};
+
+const cardStyle = {
+  width: "320px",
+  height: "80px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  gap: 3,
+  mt: 2,
+  padding: 2,
+  borderRadius: 3,
+  boxShadow: 3,
+  backgroundColor: "white",
+  color: "black",
+  textDecoration: "none",
+  "&:hover": {
+    boxShadow: 6,
+    color: "primary",
+  },
 };
 
 export default Card;
