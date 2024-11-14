@@ -3,8 +3,9 @@ import{BrowserRouter as Router} from 'react-router-dom';
 import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import Users from './users/pages/Users';
 import NewPlace from './places/pages/NewPlace';
-import UserProfile from './users/components/UserProfile';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
+import UserPlaces from './places/pages/UserPlaces';
+
 function App() {
   return (
   <Router>
@@ -12,7 +13,7 @@ function App() {
     <Switch>
     <Route path='/' exact><Users/></Route>
     <Route path='/places/new' exact><NewPlace></NewPlace></Route>
-    <Route path="/:id/places" exact><UserProfile /></Route>
+    <Route path='/:userid/places' exact><UserPlaces></UserPlaces></Route>
     <Redirect to='/'></Redirect>
     </Switch>
   </Router>

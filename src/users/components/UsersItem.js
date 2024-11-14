@@ -4,7 +4,7 @@ import Card from "../../shared/components/UIElements/Card";
 
 const UsersItem = (props) => {
   return (
-    <Card>
+    <Card to={`/${props.id}/places`}>
       <img
         src={props.image}
         alt={props.name}
