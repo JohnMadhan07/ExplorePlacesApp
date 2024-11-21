@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Card = ({ children, to }) => {
   return (
     <Container
-      fixed
       sx={{
         display: "flex",
         justifyContent: "center",

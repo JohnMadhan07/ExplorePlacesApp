@@ -1,6 +1,7 @@
 import React from "react";
 import PlaceList from "../components/PlaceList";
 import needleImage from "../../needle.jpg";
+import howthImage from "../../howth.jpg"
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 
 const UserPlaces = () => {
@@ -15,11 +16,19 @@ const UserPlaces = () => {
     },
     {
       id: "p2",
-      name: "Dublin Needle",
-      description: "A tall structure made of steel in the city center",
-      image: needleImage,
+      name: "Howth CLiff",
+      description: "A cliff near the East Ireland",
+      image: howthImage,
       creator:"u2",
     },
+    {
+      id: "p2",
+      name: "Howth CLiff",
+      description: "A cliff near the East Ireland",
+      image: howthImage,
+      creator:"u2",
+    },
+    
   ];
   const userid= useParams().userid
   const loaded_places=dummy_places.filter((place)=>(place.creator===userid))

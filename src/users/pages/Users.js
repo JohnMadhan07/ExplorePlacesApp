@@ -1,6 +1,7 @@
 import React from "react";
 import UsersList from "../components/UsersList";
 import steveImage from "../../steve.jpg"
+import falguniImage from "../../falguni.webp"
 const Users = () => {
   const Users = [
     {
@@ -14,7 +15,7 @@ const Users = () => {
       id: "u2",
       name: "Annie",
       image:
-        steveImage,
+        falguniImage,
       placeCount: 2,
     } 
   ];
