@@ -46,9 +46,9 @@ const MainNavigation = () => {
           >
             <MenuIcon />
             <Drawer
-              anchor="left" // Drawer opens from the left
-              open={isdrawerOpen} // Control open/close state
-              onClose={toggleDrawer(false)} // Close drawer on click outside
+              anchor="left" 
+              open={isdrawerOpen}
+              onClose={toggleDrawer(false)} 
             >
               <NavLinks></NavLinks>
             </Drawer>

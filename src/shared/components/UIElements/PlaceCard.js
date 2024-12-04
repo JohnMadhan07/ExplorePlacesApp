@@ -12,6 +12,7 @@ const PlaceCard = ({ children }) => {
         margin:0,
         padding:0
       }}
+      maxWidth={false}
     >
       <Box
         sx={{
