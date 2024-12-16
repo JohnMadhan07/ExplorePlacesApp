@@ -36,6 +36,10 @@ const NewPlace = () => {
         value: "",
         isValid: false,
       },
+      address: {
+        value: "",
+        isValid: false,
+      },
     },
     isValid: false,
   });
@@ -69,7 +73,13 @@ console.log(formState)
           validators={[VALIDATOR_MINLENGTH(5)]}
           onInput={inputHandler}
         />
-    
+    <Input
+          id="address"
+          element="input"
+          label="Address"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+        />
       <button type="submit" disabled={!formState.isValid}>
         ADD PLACE
       </button>
