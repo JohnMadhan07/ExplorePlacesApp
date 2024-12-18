@@ -48,7 +48,7 @@ const UpdatePlace = () => {
         type="text"
         validators={[VALIDATOR_REQUIRE()]}
         onInput={() => {}}
-        value={identifiedPlace.title}
+        value={identifiedPlace.name}
         isValid={true}
       ></Input>
       <Input
@@ -60,7 +60,7 @@ const UpdatePlace = () => {
         value={identifiedPlace.description}
         isValid={true}
       ></Input>
-      <button type="submit" disabled={true}></button>
+      <button type="submit" disabled={true}>EDIT PLACE</button>
     </form>
     </PlaceCard>
   );
