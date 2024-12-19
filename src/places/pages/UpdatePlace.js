@@ -8,6 +8,7 @@ import {
   VALIDATOR_MINLENGTH,
 } from "../../shared/components/FormElements/validators";
 import PlaceCard from "../../shared/components/UIElements/PlaceCard";
+import { useForm } from "../../shared/components/hooks/Form-hook";
 
 const UpdatePlace = () => {
   const placeId = useParams().placeId;
@@ -35,33 +36,52 @@ const UpdatePlace = () => {
     },
   ];
   const identifiedPlace = dummy_places.find((p) => p.id === placeId);
+  const [formState, inputHandler] = useForm(
+    {
+      title: {
+        value: identifiedPlace.name,
+        isValid: true,
+      },
+      description: {
+        value: identifiedPlace.description,
+        isValid: true,
+      },
+    },
+    true
+  );
   if (!identifiedPlace) {
     return <div>No places Found</div>;
   }
+  const submitformHandler = (event) => {
+    event.preventDefault();
+    console.log(formState.inputs);
+  };
   return (
     <PlaceCard>
-    <form>
-      <Input
-        id="title"
-        label="Title"
-        element="input"
-        type="text"
-        validators={[VALIDATOR_REQUIRE()]}
-        onInput={() => {}}
-        value={identifiedPlace.name}
-        isValid={true}
-      ></Input>
-      <Input
-        id="description"
-        label="Description"
-        element="textarea"
-        validators={[VALIDATOR_MINLENGTH(5)]}
-        onInput={() => {}}
-        value={identifiedPlace.description}
-        isValid={true}
-      ></Input>
-      <button type="submit" disabled={true}>EDIT PLACE</button>
-    </form>
+      <form onSubmit={submitformHandler}>
+        <Input
+          id="title"
+          label="Title"
+          element="input"
+          type="text"
+          validators={[VALIDATOR_REQUIRE()]}
+          onInput={inputHandler}
+          initialValue={formState.inputs.title.value}
+          initialValidity={formState.inputs.title.isValid}
+        ></Input>
+        <Input
+          id="description"
+          label="Description"
+          element="textarea"
+          validators={[VALIDATOR_MINLENGTH(5)]}
+          onInput={inputHandler}
+          initialValue={formState.inputs.description.value}
+          initialValidity={formState.inputs.description.isValid}
+        ></Input>
+        <button type="submit" disabled={!formState.isValid}>
+          EDIT PLACE
+        </button>
+      </form>
     </PlaceCard>
   );
 };

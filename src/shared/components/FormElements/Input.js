@@ -17,8 +17,8 @@ const reducer = (state, action) => {
 };
 const Input = (props) => {
   const [inputstate, dispatch] = useReducer(reducer, {
-    value: props.value || "",
-    isValid: props.isValid|| false,
+    value: props.initialValue || "",
+    isValid: props.initialValidity|| false,
     isTouched: false,
   });
   const conditionalStyles = {
