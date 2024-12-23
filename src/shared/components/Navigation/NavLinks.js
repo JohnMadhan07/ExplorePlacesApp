@@ -14,7 +14,7 @@ const NavLinks = () => {
       <NavLink to="/" exact style={linkStyle}>
         <Button color="inherit">Home</Button>
       </NavLink>
-      <NavLink to="/places/u1" style={linkStyle}>
+      <NavLink to="u1/places/" style={linkStyle}>
         <Button color="inherit">My Places</Button>
       </NavLink>
       <NavLink to="/places/new" style={linkStyle}>

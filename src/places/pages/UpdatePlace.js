@@ -49,32 +49,34 @@ const UpdatePlace = () => {
     },
     false
   );
-  console.log(formState);
+
   const identifiedPlace = dummy_places.find((p) => p.id === placeId);
 
   useEffect(() => {
-    setFormData(
-      {
-        title: {
-          value: identifiedPlace.name,
-          isValid: true,
+    if(identifiedPlace){
+      setFormData(
+        {
+          title: {
+            value: identifiedPlace.name,
+            isValid: true,
+          },
+          description: {
+            value: identifiedPlace.description,
+            isValid: true,
+          },
         },
-        description: {
-          value: identifiedPlace.description,
-          isValid: true,
-        },
-      },
-      true
-    );
+        true
+      );
+    }
+    
     setisLoading(false)
   }, [setFormData, identifiedPlace]);
   if (!identifiedPlace) {
     return <div>No places Found</div>;
   }
-
   const submitformHandler = (event) => {
     event.preventDefault();
-    
+    console.log(formState.inputs);
   };
   if (isLoading) {
     return <div>Loading</div>;
