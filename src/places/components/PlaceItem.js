@@ -1,9 +1,12 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import PlaceCard from "../../shared/components/UIElements/PlaceCard";
-import BaseModal from "../../shared/components/UIElements/Modal";
+import ModalUnstyled from "../../shared/components/UIElements/Modal";
 
 const PlaceItem = (props) => {
+  const [openParent, setopenParent] = useState(false);
+  const parentopenHandler = () => setopenParent(true);
+  const panrentcloseHandler = () => setopenParent(false);
   return (
     <PlaceCard>
       <img
@@ -19,7 +22,17 @@ const PlaceItem = (props) => {
           flexDirection: "row",
         }}
       >
-        <BaseModal></BaseModal>
+        <button onClick={parentopenHandler}> View on Map</button>
+        <ModalUnstyled
+          open={openParent}
+          onClose={panrentcloseHandler}
+          title="Location Details"
+        >
+          {" "}
+          <Typography variant="body2">
+            This is a placeholder for map or additional details.
+          </Typography>
+        </ModalUnstyled>
         <Button>Edit</Button>
         <Button>Delete</Button>
       </Box>

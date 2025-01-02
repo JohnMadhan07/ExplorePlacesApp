@@ -13,9 +13,9 @@ function App() {
     <MainNavigation></MainNavigation>
     <Switch>
     <Route path='/' exact><Users/></Route>
-    <Route path='/places/new' exact><NewPlace></NewPlace></Route>
     <Route path='/:userid/places' exact><UserPlaces></UserPlaces></Route>
-    <Route path= '/places/:placeId'><UpdatePlace/></Route>
+    <Route path='/places/new' exact><NewPlace></NewPlace></Route>
+    <Route path= '/places/:placeId' exact><UpdatePlace/></Route>
     <Redirect to='/'></Redirect>
     </Switch>
   </Router>
