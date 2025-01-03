@@ -4,9 +4,14 @@ import PlaceCard from "../../shared/components/UIElements/PlaceCard";
 import ModalUnstyled from "../../shared/components/UIElements/Modal";
 
 const PlaceItem = (props) => {
+  const [openMap, setopenMap] = useState(false);
   const [openParent, setopenParent] = useState(false);
-  const parentopenHandler = () => setopenParent(true);
-  const panrentcloseHandler = () => setopenParent(false);
+
+  const showMapHandler = () => setopenMap(true);
+  const closeMapHandler = () => setopenMap(false);
+  const openParentHandler = () => setopenParent(true);
+  const closeParentHandler = () => setopenParent(false);
+
   return (
     <PlaceCard>
       <img
@@ -20,12 +25,13 @@ const PlaceItem = (props) => {
         sx={{
           display: "flex",
           flexDirection: "row",
+          
         }}
       >
-        <button onClick={parentopenHandler}> View on Map</button>
+        <button onClick={showMapHandler}> View on Map</button>
         <ModalUnstyled
-          open={openParent}
-          onClose={panrentcloseHandler}
+          open={openMap}
+          onClose={closeMapHandler}
           title="Location Details"
         >
           {" "}
@@ -34,7 +40,12 @@ const PlaceItem = (props) => {
           </Typography>
         </ModalUnstyled>
         <Button>Edit</Button>
-        <Button>Delete</Button>
+        <Button onClick={openParentHandler}>Delete</Button>
+        <ModalUnstyled open={openParent} onClose={closeParentHandler}>
+          <Typography variant="body3">Delete Confirm?</Typography>        
+         <Button>Yes</Button>
+         <Button>No</Button>
+        </ModalUnstyled>
       </Box>
     </PlaceCard>
   );
