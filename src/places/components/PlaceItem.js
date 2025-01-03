@@ -44,7 +44,7 @@ const PlaceItem = (props) => {
         <ModalUnstyled open={openParent} onClose={closeParentHandler}>
           <Typography variant="body3">Delete Confirm?</Typography>        
          <Button>Yes</Button>
-         <Button>No</Button>
+         <Button onClick={closeParentHandler}>No</Button>
         </ModalUnstyled>
       </Box>
     </PlaceCard>
