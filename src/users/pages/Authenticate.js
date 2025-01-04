@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Input from "../../shared/components/FormElements/Input";
 import PlaceCard from "../../shared/components/UIElements/PlaceCard";
 import { useForm } from "../../shared/components/hooks/Form-hook";
@@ -7,8 +7,9 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../shared/components/FormElements/validators";
-
+import { AuthContext } from "../../shared/components/context/Auth-context";
 const Authenticate = () => {
+  const auth = useContext(AuthContext);
   const [isLoginMode, setisLoginMode] = useState(true);
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -23,7 +24,8 @@ const Authenticate = () => {
     },
     false
   );
-  const formSubmitHandler = (e) => e.preventDefault();
+  const formSubmitHandler = (e) => {e.preventDefault();
+  auth.login()}
   const switchModeHandler = () => {
     if (!isLoginMode) {
       setFormData(
@@ -74,11 +76,11 @@ const Authenticate = () => {
           label="password"
         ></Input>
         <button type="submit" disabled={!formState.isValid}>
-          {isLoginMode ? "LOGIN" : "SIGNUP"}
+          {isLoginMode ? "LOGIN" : "SIGNUP" }
         </button>
       </form>
       <button onClick={switchModeHandler}>
-        Switch to {isLoginMode ? "SIGNUP" : "LOGIN"}
+        Switch to {isLoginMode ? "SIGNUP"  : "LOGIN"}
       </button>
     </PlaceCard>
   );

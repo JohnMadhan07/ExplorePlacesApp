@@ -16,7 +16,7 @@ import { AuthContext } from "./shared/components/context/Auth-context";
 function App() {
   const [isLoggedIn, setisLoggedIn]=useState(false)
   const login=useCallback(()=>{
-    setisLoggedIn(false)
+    setisLoggedIn(true)
   },[])
   const logout=useCallback(()=>{
     setisLoggedIn(false)
