@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../../shared/components/FormElements/Input";
 import PlaceCard from "../../shared/components/UIElements/PlaceCard";
 import { useForm } from "../../shared/components/hooks/Form-hook";
-import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH} from "../../shared/components/FormElements/validators";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../../shared/components/FormElements/validators";
 
 const Authenticate = () => {
-  const [formState, inputHandler] = useForm(
+  const [isLoginMode, setisLoginMode] = useState(true);
+  const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
         value: "",
@@ -19,8 +24,40 @@ const Authenticate = () => {
     false
   );
   const formSubmitHandler = (e) => e.preventDefault();
+  const switchModeHandler = () => {
+    if (!isLoginMode) {
+      setFormData(
+        {
+          ...formState.inputs,
+          name: undefined,
+        },
+        formState.inputs.email.isValid && formState.inputs.password.isValid
+      );
+    } else {
+      setFormData(
+        {
+          ...formState.inputs,
+          name: {
+            value: "",
+            isValid: false,
+          },
+        },
+        false
+      );
+    }
+    setisLoginMode((prevMode) => !prevMode);
+  };
   return (
     <PlaceCard>
+      {!isLoginMode && (
+        <Input
+          element="input"
+          id="name"
+          onInput={inputHandler}
+          label="Your Name"
+          validators={[VALIDATOR_REQUIRE()]}
+        ></Input>
+      )}
       <form onSubmit={formSubmitHandler}>
         <Input
           id="email"
@@ -37,9 +74,12 @@ const Authenticate = () => {
           label="password"
         ></Input>
         <button type="submit" disabled={!formState.isValid}>
-        Sign In
-      </button>
+          {isLoginMode ? "LOGIN" : "SIGNUP"}
+        </button>
       </form>
+      <button onClick={switchModeHandler}>
+        Switch to {isLoginMode ? "SIGNUP" : "LOGIN"}
+      </button>
     </PlaceCard>
   );
 };
